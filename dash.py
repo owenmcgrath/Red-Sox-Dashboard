@@ -87,9 +87,9 @@ def printCurrentGame(game):
 def printTweets():
 	print("\nTWEETS\n======\n")
 	print("Alex Speier (@alexspeier): " + getTweet("alexspeier"))
-	print("Jared Carrabis (@Jared_Carrabis): " + getTweet("Jared_Carrabis"))
-	print("MLB (@mlb): " + getTweet("mlb"))
-	print("Red Sox (@alexspeier): " + getTweet("RedSox"))
+	print("\nJared Carrabis (@Jared_Carrabis): " + getTweet("Jared_Carrabis"))
+	print("\nMLB (@mlb): " + getTweet("mlb"))
+	print("\nRed Sox (@redsox): " + getTweet("RedSox"))
 
 def looper():
 	os.system('cls')
