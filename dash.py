@@ -10,10 +10,53 @@ import threading
 
 import os
 
+from kivy.app import App 
+from kivy.uix.widget import Widget
+from kivy.core.window import Window 
+Window.size = (1920, 1080)
+Window.fullscreen = True
+
+
 api = twitter.Api(consumer_key = consumer_key,
 				  consumer_secret = consumer_secret,
 				  access_token_key = access_token_key,
 				  access_token_secret = access_token_secret)
+
+home_team = ""
+away_team = ""
+
+def getLogo(team):
+	return {"Diamondbacks" : "Logos/Arizona_Diamondbacks.png",
+			"Braves" : "Logos/Atlanta_Braves.png",
+			"Orioles" : "Logos/Baltimore_Orioles.png",
+			"Red Sox" : "Logos/Boston_Redsox.png",
+			"Cubs" : "Logos/Chicago_Cubs.png",
+			"White Sox" : "Logos/Chicago_White_Sox.png",
+			"Reds" : "Logos/Cincinnati_Reds.png",
+			"Indians" : "Logos/_Indians.png",
+			"Rockies" : "Logos/Colorado_Rockies.png",
+			"Tigers" : "Logos/Detroit_Tigers.png",
+			"Astros" : "Logos/Houston_Astros.png",
+			"Royals" : "Logos/KansasCity_Royals.png",
+			"Angels" : "Logos/LosAngeles_Angels.png",
+			"Dodgers" : "Logos/LosAngeles_Dodgers.png",
+			"Marlins" : "Logos/Miami_Marlins.png",
+			"Brewers" : "Logos/Milwaukee_Brewers.png",
+			"Twins" : "Logos/Minnesota_Twins.png",
+			"Mets" : "Logos/NewYork_Mets.png",
+			"Yankees" : "Logos/NewYork_Yankees.png",
+			"Athletics" : "Logos/Oakland_Athletics.png",
+			"Phillies" : "Logos/Philadelphia_Phillies.png",
+			"Pirates" : "Logos/Pittsburgh_Pirates.png",
+			"Padres" : "Logos/SanDiego_Padres.png",
+			"Giants" : "Logos/SanFrancisco_Giants.png",
+			"Mariners" : "Logos/Seattle_Mariners.png",
+			"Cardinals" : "Logos/StLouis_Cardinals.png",
+			"Rays" : "Logos/TampaBay_Rays.png",
+			"Rangers" : "Logos/Texas_Rangers.png",
+			"Blue Jays" : "Logos/Toronto_Blue_Jays.png",
+			"Nationals" : "Logos/Washington_Nationals.png"
+			}[team]
 
 
 def getPlayer(playerID, playerlist):
@@ -91,8 +134,22 @@ def printTweets():
 	print("\nMLB (@mlb): " + getTweet("mlb"))
 	print("\nRed Sox (@redsox): " + getTweet("RedSox"))
 
+# def buildWindow():
+# 	window = tkinter.Tk()
+# 	window.title("Sox xD")
+# 	window.attributes("-fullscreen", True)
+# 	window.configure(background = 'red')
+# 	path = "fenway.jpg"
+
+# 	img = ImageTk.PhotoImage(Image.open(path))
+
+# 	panel = tkinter.Label(window, image = img)
+
+# 	panel.pack(side = "bottom", fill = "both", expand = "yes")
+
+
 def looper():
-	os.system('cls')
+	#os.system('cls')
 	threading.Timer(10.0, looper).start()
 	gameday = datetime.datetime.now()
 	# tomorrow = gameday - datetime.timedelta(1)
@@ -108,7 +165,8 @@ def looper():
 		else:
 			gameday += datatime.timedelta(1)
 
-
+	home_team = game.home_team
+	away_team = game.away_team
 
 	standings = mlbgame.standings()
 	alEast = standings.divisions[3]
@@ -129,5 +187,12 @@ def looper():
 	else:
 		printCurrentGame(game)
 
-looper()
+class Dash(Widget):
+	pass
 
+class DashApp(App):
+	def build(self):
+		return Dash()
+
+looper()
+DashApp().run()

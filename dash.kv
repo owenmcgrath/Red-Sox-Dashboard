@@ -1,0 +1,30 @@
+#:kivy 1.0.9
+
+<Dash>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "images/fenway.jpg" 
+    canvas:
+        Rectangle:
+            pos: root.center_x-750, root.center_y-353
+            size: 1500, 706
+            source: "images/scoreboard.png"
+        Rectangle: 
+            pos: root.center_x-675, root.center_y-50
+            size: 250,250
+            source: "logos/Boston_Redsox.png"
+        Rectangle: 
+            pos: root.center_x-675, root.center_y-300
+            size: 250,250
+            source: "logos/Minnesota_Twins.png"
+    Label: 
+        font_size: 100
+        center_x: root.width/2 - 225
+        top: root.top/2 + 300
+        text: "R   H   E"    
+
+
+
+
